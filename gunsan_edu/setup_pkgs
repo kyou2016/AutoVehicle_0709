@@ -1,0 +1,44 @@
+## install pkg
+
+git clone https://github.com/MAPIRlab/mapir-ros-pkgs
+
+sudo apt-get install libmrpt-dev
+
+git clone https://github.com/ros-perception/slam_gmapping.git
+
+sudo apt-get install ros-melodic-openslam-gmapping
+
+sudo apt-get install ros-melodic-map-server
+
+
+git clone https://github.com/ros-planning/navigation.git
+
+sudo apt-get install ros-melodic-tf2-sensor-msgs 
+sudo apt-get install ros-melodic-move-base-msgs 
+
+
+######################################################################
+##mapping rf20 command (lidar setting yaw 180)
+rb
+rosrun tf static_transform_publisher 0.5 0 0.5 3.141592 0 0 /base_link /laser 50
+roslaunch rf2o_laser_odometry rf2o_laser_odometry.launch 
+roslaunch gmapping test.launch 
+cd ~ && rosrun map_server map_saver
+
+
+
+######################################################################
+##localization   (lidar setting yaw 180)
+rosrun tf static_transform_publisher 0.5 0 0.5 3.141592 0 0 /base_link /laser 50
+
+rosrun map_server map_server ~/map.yaml
+roslaunch amcl amcl_wecar.launch
+
+rosrun control_planning 9_make_path_tf.py  
+rosrun control_planning 7_path_pub.py 
+rosrun control_planning 8_purepursuit.py       (topic amcl_pose)
+
+
+
+
+
