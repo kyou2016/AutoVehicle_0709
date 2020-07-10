@@ -12,7 +12,4 @@
 
 		network - apply
 		sensor - confirm
-
 4. rosbridge에서 연결이 되었는지 확인하고 새 터미널에서 다른 소스들을 실행하고 rviz를 실행하여 확인한다
-
-		asdasdasd
