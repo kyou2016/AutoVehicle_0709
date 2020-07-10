@@ -30,3 +30,6 @@ pure pursuit에 필요한 코드
 
 ## pure_pursuit.py
 읽어온 경로를 추종하여 따라가는 코드
+
+### 하위 폴더의 .git폴더 삭제하는 명령어 (우분투)
+		find . -mindepth -name '.git' -prune -exec rm -rf {} +
